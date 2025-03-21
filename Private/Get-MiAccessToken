@@ -1,0 +1,25 @@
+function Get-MiAccessToken {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string] $IdentityClientId
+    )
+    process {
+        try {
+            $accessToken = Invoke-RestMethod $env:IDENTITY_ENDPOINT -Method 'POST' -Headers @{
+                'Metadata'          = 'true'
+                'X-IDENTITY-HEADER' = $env:IDENTITY_HEADER
+            } -ContentType 'application/x-www-form-urlencoded' -Body @{
+                'resource'  = 'api://AzureADTokenExchange'
+                'client_id' = $IdentityClientId
+            }
+            Write-Verbose "Testing Microsoft Graph environment..."
+            Write-Output $accessToken.access_token
+            return $accessToken.access_token
+        }
+        catch {
+            Write-Error "Microsoft Graph environment check failed: $_"
+            return $false
+        }
+    }
+}
