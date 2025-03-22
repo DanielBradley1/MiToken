@@ -1,0 +1,18 @@
+
+
+
+
+#region Step 3 - Exchange the access token from step 2 for a token in the target tenant using the app registration
+$accessTokenForTenantB = Invoke-RestMethod "https://login.microsoftonline.com/$targetTenantId/oauth2/v2.0/token" -Method 'POST' -Body @{
+    client_id             = $appRegistrationClientId
+    scope                 = 'https://graph.microsoft.com/.default'
+    grant_type            = "client_credentials"
+    client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+    client_assertion      = $accessToken.access_token
+}
+ 
+if(-not $accessTokenForTenantB.access_token) {
+    throw "Failed to acquire access token for tenant B"
+} else {
+    Write-Output "Successfully acquired access token for tenant B"
+}

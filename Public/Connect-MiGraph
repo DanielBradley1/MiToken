@@ -13,13 +13,15 @@ function Connect-MiGraph {
     
     process {
         try {
-            # First test the environment using the private function
-            if (-not (Test-MgEnvironment)) {
+            $miToken = Get-MiAccessTokenv -IdentityClientId $IdentityId
+            # First obtain the managed identity access token
+            if (-not ($miToken)) {
                 throw "Microsoft Graph environment check failed"
             }
             
+
             # Add connection logic here
-            Write-Verbose "Connecting to Microsoft Graph API..."
+            Write-Verbose "Obtaining app access token with managed identity token as an assertion"
             Write-Output "Successfully connected to Microsoft Graph API"
         }
         catch {
