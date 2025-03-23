@@ -13,11 +13,6 @@ function Connect-MiGraph {
     process {
         try {
             $miToken = Get-MiAccessToken -IdentityClientId $IdentityClientId
-            # First obtain the managed identity access token
-            if (-not ($miToken)) {
-                throw "Microsoft Graph environment check failed"
-            }
-            # Exchange managed identity token for app access token
             $appAccessToken = Get-AppAccessToken -targetTenantId $TenantId -accessToken $miToken -ClientId $ClientId
             $secureToken = ConvertTo-SecureString -String $appAccessToken -AsPlainText
             try {

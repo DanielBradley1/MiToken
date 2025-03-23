@@ -45,12 +45,12 @@ function Get-MiAccessToken {
                 return $accessToken.access_token
             }
             else {
-                Write-Error "Failed to obtain token from managed identity endpoint."
+                Throw "Failed to obtain token from managed identity endpoint."
                 return $false
             }
         }
         catch {
-            Write-Error "Failed to obtain token from managed identity endpoint."
+            Throw "Failed to obtain token from managed identity endpoint."
             return $false
         }
     }

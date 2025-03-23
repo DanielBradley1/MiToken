@@ -25,8 +25,9 @@ function Test-MgEnvironment {
             Write-Verbose "Testing Microsoft Graph environment..."
             if ($null -eq $Context) {
                 Write-output "No active Microsoft Graph connection found."
+            } else {
+                Write-Output "Connection to Microsoft Graph has been successfully established."
             }
-            Write-Output "Connection to Microsoft Graph has been successfully established."
         }
         catch {
             Write-Error "Microsoft Graph environment check failed: $_"
