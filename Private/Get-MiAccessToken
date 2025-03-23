@@ -50,7 +50,7 @@ function Get-MiAccessToken {
             }
         }
         catch {
-            Write-Error "Microsoft Graph environment check failed: $_"
+            Write-Error "Failed to obtain token from managed identity endpoint."
             return $false
         }
     }

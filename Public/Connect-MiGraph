@@ -8,21 +8,25 @@ function Connect-MiGraph {
         [string]$ClientId,
         
         [Parameter(Mandatory=$false)]
-        [string]$IdentityId
+        [string]$IdentityClientId
     )
-    
     process {
         try {
-            $miToken = Get-MiAccessTokenv -IdentityClientId $IdentityId
+            $miToken = Get-MiAccessToken -IdentityClientId $IdentityClientId
             # First obtain the managed identity access token
             if (-not ($miToken)) {
                 throw "Microsoft Graph environment check failed"
             }
-            
-
-            # Add connection logic here
-            Write-Verbose "Obtaining app access token with managed identity token as an assertion"
-            Write-Output "Successfully connected to Microsoft Graph API"
+            # Exchange managed identity token for app access token
+            $appAccessToken = Get-AppAccessToken -targetTenantId $TenantId -accessToken $miToken -ClientId $ClientId
+            $secureToken = ConvertTo-SecureString -String $appAccessToken -AsPlainText
+            try {
+                Connect-MgGraph -AccessToken $secureToken -nowelcome
+            }
+            catch {
+                Write-Error "Failed to connect to Microsoft Graph: $_"
+            }
+            Test-MgEnvironment
         }
         catch {
             Write-Error "Failed to connect to Microsoft Graph: $_"

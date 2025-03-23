@@ -6,6 +6,7 @@ function Test-MgEnvironment {
     .DESCRIPTION
         The Test-MgEnvironment function checks if there is an active Microsoft Graph PowerShell connection
         by retrieving the current context. It returns true if a valid connection exists, otherwise false.
+        When a connection is successfully established, it writes a confirmation message to the console.
     
     .EXAMPLE
         Test-MgEnvironment
@@ -23,15 +24,12 @@ function Test-MgEnvironment {
             $Context = Get-MgContext -ErrorAction Stop
             Write-Verbose "Testing Microsoft Graph environment..."
             if ($null -eq $Context) {
-                Write-Verbose "No active Microsoft Graph connection found."
-                return $false
+                Write-output "No active Microsoft Graph connection found."
             }
-            Write-Verbose "Connected to Microsoft Graph as: $($Context.ContextScope)"
-            return $true
+            Write-Output "Connection to Microsoft Graph has been successfully established."
         }
         catch {
             Write-Error "Microsoft Graph environment check failed: $_"
-            return $false
         }
     }
 }
