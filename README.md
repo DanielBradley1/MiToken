@@ -1,17 +1,16 @@
-<a href="https://www.linkedin.com/in/danielbradley2/" style="display: flex; align-items: center; text-decoration: none; margin-bottom: 16px;">
-  <img src="https://www.svgrepo.com/show/271118/linkedin.svg" width="25" style="vertical-align: middle;">
-  <span style="vertical-align: middle; margin-left: 8px;">Connect with me!</span>
-</a>
 
-
-# <div style="display: flex; align-items: center;"><span>MiToken</span><img src="https://learn.microsoft.com/en-us/graph/images/hub/icon04-graphtoolkit.svg" width="45" height="45" style="margin-left: 10px;"></div>
+# MiToken ![img](https://ourcloudnetwork.com/wp-content/uploads/2025/03/GraphLogo45.png)
 
 MiToken is a PowerShell module designed to be used with PowerShell Azure Automation runbooks. It will obtain an access token from the managed identity endpoint from within your runbook, then exchange it for a mulit-tenant app access token, using the managed identity token as an assertion. 
 
 This will allow you to connect to external tenants that have provided consent to your multi-tenant application via Microsoft Graph PowerShell in a managed identity scenario.
 
+🔗[Connect with me on LinkedIn](https://www.linkedin.com/in/danielbradley2/)
+
 ## Support
 This MiToken module is provided 'as in' and has only been tested from within an Azure Automation runbook. Currently it is known to work with the latest Microsoft Graph PowerShell module (v2.6.1) and the PowerShel v7.4 runtime environment.
+
+
 
 ## Requirements
 
