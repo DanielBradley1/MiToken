@@ -1,11 +1,28 @@
-# MiToken
+<a href="https://www.linkedin.com/in/danielbradley2/" style="display: flex; align-items: center; text-decoration: none; margin-bottom: 16px;">
+  <img src="https://www.svgrepo.com/show/271118/linkedin.svg" width="25" style="vertical-align: middle;">
+  <span style="vertical-align: middle; margin-left: 8px;">Connect with me!</span>
+</a>
 
-MiToken is a PowerShell module designed to simplify authentication and token management for Microsoft Graph API.
+
+# <div style="display: flex; align-items: center;"><span>MiToken</span><img src="https://learn.microsoft.com/en-us/graph/images/hub/icon04-graphtoolkit.svg" width="45" height="45" style="margin-left: 10px;"></div>
+
+MiToken is a PowerShell module designed to be used with PowerShell Azure Automation runbooks. It will obtain an access token from the managed identity endpoint from within your runbook, then exchange it for a mulit-tenant app access token, using the managed identity token as an assertion. 
+
+This will allow you to connect to external tenants that have provided consent to your multi-tenant application via Microsoft Graph PowerShell in a managed identity scenario.
+
+## Support
+This MiToken module is provided 'as in' and has only been tested from within an Azure Automation runbook. Currently it is known to work with the latest Microsoft Graph PowerShell module (v2.6.1) and the PowerShel v7.4 runtime environment.
+
+## Requirements
+
+- **PowerShell 7** or later
+- **Microsoft.Graph.Authentication** module
+- To be run from a **managed identity** environment
 
 ## Installation
 
 ```powershell
-# Install from PSGallery (when published)
+# Install from PSGallery
 Install-Module -Name MiToken -Scope CurrentUser
 
 # Or clone this repository
@@ -20,26 +37,9 @@ git clone https://github.com/DanielBradley1/MiToken.git
 # Import the module
 Import-Module MiToken
 
-# Connect with default settings
-Connect-MiGraph
-
-# Connect with specific tenant and client ID
-Connect-MiGraph -TenantId "contoso.onmicrosoft.com" -ClientId "00000000-0000-0000-0000-000000000000"
-
-# Connect with custom scopes
-Connect-MiGraph -Scopes "User.Read", "Mail.Read"
+# Connect with specific tenant and client ID. All parameters are mandatory.
+Connect-MiGraph -TenantId "TENANT_ID" -ClientId "CLIENT_ID" -IdentityClientId "MANAGED_IDENTITY_CLIENT_ID"
 ```
-
-## Features
-
-- Simple authentication to Microsoft Graph API
-- Token management
-- Environment verification
-
-## Requirements
-
-- PowerShell 5.1 or later
-- Windows PowerShell or PowerShell Core
 
 ## Contributing
 
