@@ -10,7 +10,6 @@ FunctionsToExport = @('Connect-MiGraph')
 CmdletsToExport = @()
 VariablesToExport = @()
 AliasesToExport = @()
-RequiredModules = @('Microsoft.Graph.Authentication')
 PrivateData = @{
         PSData = @{
             Tags = @('MicrosoftGraph', 'Authentication', 'Token')
