@@ -19,10 +19,10 @@ This MiToken module is provided 'as is' and has only been tested from within an 
 
 ```powershell
 # Install Microsoft.Graph.Authentication dependency first
-Install-Module -Name Microsoft.Graph.Authentication -Scope CurrentUser
+Install-Module -Name Microsoft.Graph.Authentication
 
 # Install MiToken from PSGallery
-Install-Module -Name MiToken -Scope CurrentUser
+Install-Module -Name MiToken
 
 # Or clone this repository
 git clone https://github.com/DanielBradley1/MiToken.git
