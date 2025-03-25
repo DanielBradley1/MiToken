@@ -18,6 +18,7 @@ PrivateData = @{
             ProjectUri = 'https://github.com/DanielBradley1/MiToken'
             # IconUri = ''
             # ReleaseNotes = ''
+            ExternalModuleDependencies = @('Microsoft.Graph.Authentication')
         }
     }
 }
