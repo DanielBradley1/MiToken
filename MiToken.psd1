@@ -1,6 +1,6 @@
 @{
 RootModule = 'MiToken.psm1'
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.1.1'
 GUID = 'df45e3ce-0c54-4988-92a3-2755b9c53262' # Randomly generated GUID
 Author = 'Daniel Bradley'
 CompanyName = 'ourcloudnetwork.com'
@@ -10,6 +10,7 @@ FunctionsToExport = @('Connect-MiGraph')
 CmdletsToExport = @()
 VariablesToExport = @()
 AliasesToExport = @()
+RequiredModules = @('Microsoft.Graph.Authentication')
 PrivateData = @{
         PSData = @{
             Tags = @('MicrosoftGraph', 'Authentication', 'Token')

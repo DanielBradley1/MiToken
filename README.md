@@ -1,4 +1,3 @@
-
 # MiToken ![img](https://ourcloudnetwork.com/wp-content/uploads/2025/03/GraphLogo45.png)
 
 MiToken is a PowerShell module designed to be used with PowerShell Azure Automation runbooks. It will obtain an access token from the managed identity endpoint from within your runbook, then exchange it for a multi-tenant app access token, using the managed identity token as an assertion. 
@@ -13,13 +12,16 @@ This MiToken module is provided 'as is' and has only been tested from within an 
 ## Requirements
 
 - **PowerShell 7** or later
-- **Microsoft.Graph.Authentication** module
+- **Microsoft.Graph.Authentication** module (required dependency)
 - To be run from a **managed identity** environment
 
 ## Installation
 
 ```powershell
-# Install from PSGallery
+# Install Microsoft.Graph.Authentication dependency first
+Install-Module -Name Microsoft.Graph.Authentication -Scope CurrentUser
+
+# Install MiToken from PSGallery
 Install-Module -Name MiToken -Scope CurrentUser
 
 # Or clone this repository
