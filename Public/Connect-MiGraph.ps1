@@ -13,7 +13,7 @@ function Connect-MiGraph {
     process {
         try {
             $miToken = Get-MiAccessToken -IdentityClientId $IdentityClientId
-            $appAccessToken = Get-AppAccessToken -targetTenantId $TenantId -accessToken $miToken -ClientId $ClientId
+            $appAccessToken = Get-AppAccessToken -targetTenantId $TenantId -accessToken $miToken -ClientId $ClientId -Scope "https://graph.microsoft.com/.default"
             $secureToken = ConvertTo-SecureString -String $appAccessToken -AsPlainText
             try {
                 Connect-MgGraph -AccessToken $secureToken -nowelcome

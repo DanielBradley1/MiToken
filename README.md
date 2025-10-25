@@ -40,6 +40,29 @@ Import-Module MiToken
 Connect-MiGraph -TenantId "TENANT_ID" -ClientId "CLIENT_ID" -IdentityClientId "MANAGED_IDENTITY_CLIENT_ID"
 ```
 
+### Connect to Microsoft Teams
+
+```powershell
+# Import the module
+Import-Module MiToken
+
+# Obtain an access token for Microsoft Graph
+$GraphToken = Get-MiToken `
+-TenantId "xxxxx" `
+-ClientId "xxxxx" `
+-IdentityClientId "xxxxx" `
+-Scope "https://graph.microsoft.com/.default"
+
+# Obtain an access token for Microsoft Teams
+$TeamsToken = Get-MiToken `
+-TenantId "xxxxx" `
+-ClientId "xxxxx" `
+-IdentityClientId "xxxxx" `
+-Scope "48ac35b8-9aa8-4d74-927d-1f4a14a0b239/.default"
+
+Connect-MicrosoftTeams -AccessTokens @("$GraphToken", "$TeamsToken")
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

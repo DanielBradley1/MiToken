@@ -36,13 +36,15 @@ function Get-AppAccessToken {
         [Parameter(Mandatory = $true)]
         [string] $accessToken,
         [Parameter(Mandatory = $true)]
-        [string] $clientId
+        [string] $clientId,
+        [Parameter(Mandatory = $true)]
+        [string] $Scope
     )
     process {
         try {
             $appAccessToken = Invoke-RestMethod "https://login.microsoftonline.com/$targetTenantId/oauth2/v2.0/token" -Method 'POST' -Body @{
                 client_id             = $clientId
-                scope                 = 'https://graph.microsoft.com/.default'
+                scope                 = $Scope
                 grant_type            = "client_credentials"
                 client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
                 client_assertion      = $accessToken
